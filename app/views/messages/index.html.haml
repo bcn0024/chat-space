@@ -1,0 +1,53 @@
+
+
+.flash-box
+ グループを作成しました
+
+.wrapper
+ 
+ .wrapper__chat-side
+
+  .wrapper__chat-side__side-header
+   .wrapper__chat-side__side-header__box
+    %p.wrapper__chat-side__side-header__box__user-name
+     ユーザー名
+    %ul.wrapper__chat-side__side-header__box__menu
+     %li.wrapper__chat-side__side-header__box__menu__new-group
+      =link_to "http://google.co.jp/", class:"wrapper__chat-side__side-header__box__menu__new-group__icon", id:"" do
+       = fa_icon 'edit'
+     %li.wrapper__chat-side__side-header__box__menu__edit-user
+      =link_to "http://google.co.jp/", class:"wrapper__chat-side__side-header__box__menu__edit-user__icon", id:"" do
+       = fa_icon 'cog'
+
+  .wrapper__chat-side__groups
+   = render partial: "messages/link"
+ 
+
+ .wrapper__chat-main
+  
+  .wrapper__chat-main__main-header
+   .wrapper__chat-main__main-header__leftbox
+    %h2.wrapper__chat-main__main-header__leftbox__current-group
+     グループ名
+    %ul.wrapper__chat-main__main-header__leftbox__member-list
+     メンバー一覧：
+     %li.wrapper__chat-main__main-header__leftbox__member-list__member
+      しんり
+   =link_to "http://google.co.jp/", class:".wrapper__chat-main__main-header__link", id: "" do
+    .wrapper__chat-main__main-header__link__edit-btn
+     Edit
+
+  .wrapper__chat-main__messages
+   = render partial: "messages/talk"
+
+  .wrapper__chat-main__form
+   %form.wrapper__chat-main__form__new_message
+    %input{:name => "utf8", :type => "hidden",}/
+    %input{:name => "authenticity_token", :type => "hidden", :value => "gTV/KnwPVwMfsYecxzUAfln5AP41paH9zOPdHAFYfrJejbaNKdnARwhf64h8I3D6ZYnKfDdH9fNo0PPK0Z/TcA=="}/
+    .wrapper__chat-main__form__new_message__input-box
+     %input.wrapper__chat-main__form__new_message__input-box__text{:name => "message[content]", :placeholder => "type a message", :type => "text"}/
+     %label.wrapper__chat-main__form__new_message__input-box__image{:for => "message_image"}
+      %i.fa.fa-image
+      %input.wrapper__chat-main__form__new_message__input-box__image__file{:name => "message[image]", :type => "file", id: "message_image"}/
+    %input.wrapper__chat-main__form__new_message__submit-btn{"data-disable-with" => "Send", :name => "commit", :type => "submit", :value => "Send"}/
+
