@@ -1,28 +1,5 @@
-
-
-.flash-box
- グループを作成しました
-
 .wrapper
- 
- .wrapper__chat-side
-
-  .wrapper__chat-side__side-header
-   .wrapper__chat-side__side-header__box
-    %p.wrapper__chat-side__side-header__box__user-name
-     ユーザー名
-    %ul.wrapper__chat-side__side-header__box__menu
-     %li.wrapper__chat-side__side-header__box__menu__new-group
-      =link_to "http://google.co.jp/", class:"wrapper__chat-side__side-header__box__menu__new-group__icon", id:"" do
-       = fa_icon 'edit'
-     %li.wrapper__chat-side__side-header__box__menu__edit-user
-      =link_to "http://google.co.jp/", class:"wrapper__chat-side__side-header__box__menu__edit-user__icon", id:"" do
-       = fa_icon 'cog'
-
-  .wrapper__chat-side__groups
-   = render partial: "messages/link"
- 
-
+ = render partial: "messages/link"
  .wrapper__chat-main
   
   .wrapper__chat-main__main-header
@@ -33,7 +10,7 @@
      メンバー一覧：
      %li.wrapper__chat-main__main-header__leftbox__member-list__member
       しんり
-   =link_to "http://google.co.jp/", class:".wrapper__chat-main__main-header__link", id: "" do
+   =link_to edit_group_path(@group), class:".wrapper__chat-main__main-header__link", id: "" do
     .wrapper__chat-main__main-header__link__edit-btn
      Edit
 
