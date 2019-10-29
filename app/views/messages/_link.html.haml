@@ -1,24 +1,20 @@
-=link_to "http://google.co.jp/", class:"wrapper__chat-side__groups__link", id: "" do
-  .wrapper__chat-side__groups__link__group
-    %p.wrapper__chat-side__groups__link__group__group-name
-      グループ名
-    %p.wrapper__chat-side__groups__link__group__last-message
-      最新メッセージ
-=link_to "http://google.co.jp/", class:"wrapper__chat-side__groups__link", id: "" do
-  .wrapper__chat-side__groups__link__group
-    %p.wrapper__chat-side__groups__link__group__group-name
-      グループ名
-    %p.wrapper__chat-side__groups__link__group__last-message
-      最新メッセージ
-=link_to "http://google.co.jp/", class:"wrapper__chat-side__groups__link", id: "" do
-  .wrapper__chat-side__groups__link__group
-    %p.wrapper__chat-side__groups__link__group__group-name
-      グループ名
-    %p.wrapper__chat-side__groups__link__group__last-message
-      最新メッセージ
-=link_to "http://google.co.jp/", class:"wrapper__chat-side__groups__link", id: "" do
-  .wrapper__chat-side__groups__link__group
-    %p.wrapper__chat-side__groups__link__group__group-name
-      グループ名
-    %p.wrapper__chat-side__groups__link__group__last-message
-      最新メッセージ
+.wrapper__chat-side
+  .wrapper__chat-side__side-header
+    .wrapper__chat-side__side-header__box
+      %p.wrapper__chat-side__side-header__box__user-name
+        = current_user.name
+      %ul.wrapper__chat-side__side-header__box__menu
+        %li.wrapper__chat-side__side-header__box__menu__new-group
+          =link_to new_group_path , class:"wrapper__chat-side__side-header__box__menu__new-group__icon", id:"" do
+            = fa_icon 'edit'
+        %li.wrapper__chat-side__side-header__box__menu__edit-user
+          =link_to edit_user_path(current_user), class:"wrapper__chat-side__side-header__box__menu__edit-user__icon", id:"" do
+            = fa_icon 'cog'
+  .wrapper__chat-side__groups
+    - current_user.groups.each do |group|
+      = link_to group_messages_path(group) ,class:"wrapper__chat-side__groups__link" , id: "" do
+        .wrapper__chat-side__groups__link__group
+          %p.wrapper__chat-side__groups__link__group__group-name
+            = group.name
+          %p.wrapper__chat-side__groups__link__group__last-message
+            メッセージはまだありません。
