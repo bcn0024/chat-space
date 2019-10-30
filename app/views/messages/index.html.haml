@@ -5,26 +5,32 @@
   .wrapper__chat-main__main-header
    .wrapper__chat-main__main-header__leftbox
     %h2.wrapper__chat-main__main-header__leftbox__current-group
-     グループ名
+     = @group.name
+    -#  messageコントローラーで定義した@groupが使用できる、またその選択されたレコードのnameカラムのみを取り出すという意。
     %ul.wrapper__chat-main__main-header__leftbox__member-list
-     メンバー一覧：
-     %li.wrapper__chat-main__main-header__leftbox__member-list__member
-      しんり
-   =link_to edit_group_path(@group), class:".wrapper__chat-main__main-header__link", id: "" do
+     Member： 
+     - @group.users.each do |user|
+      -#  選択された@groupのレコードのusersモデルの情報の紐付けて配列を並べる。||の中は自分で定義する。-はRails記法の中でユーザーに表示させたくないものに記載する。
+      %li.wrapper__chat-main__main-header__leftbox__member-list__member
+       = user.name
+       -#  ||内の定義した選択グループ内にいるユーザーの名前のカラムを列挙する。
+
+   =link_to edit_group_path(@group), class:"wrapper__chat-main__main-header__link", id: "" do
     .wrapper__chat-main__main-header__link__edit-btn
      Edit
 
   .wrapper__chat-main__messages
-   = render partial: "messages/talk"
+   = render @messages
+
+
 
   .wrapper__chat-main__form
-   %form.wrapper__chat-main__form__new_message
-    %input{:name => "utf8", :type => "hidden",}/
-    %input{:name => "authenticity_token", :type => "hidden", :value => "gTV/KnwPVwMfsYecxzUAfln5AP41paH9zOPdHAFYfrJejbaNKdnARwhf64h8I3D6ZYnKfDdH9fNo0PPK0Z/TcA=="}/
-    .wrapper__chat-main__form__new_message__input-box
-     %input.wrapper__chat-main__form__new_message__input-box__text{:name => "message[content]", :placeholder => "type a message", :type => "text"}/
-     %label.wrapper__chat-main__form__new_message__input-box__image{:for => "message_image"}
-      %i.fa.fa-image
-      %input.wrapper__chat-main__form__new_message__input-box__image__file{:name => "message[image]", :type => "file", id: "message_image"}/
-    %input.wrapper__chat-main__form__new_message__submit-btn{"data-disable-with" => "Send", :name => "commit", :type => "submit", :value => "Send"}/
+   = form_for [@group,@message] do |f|
+    .wrapper__chat-main__form__new_message
+     .wrapper__chat-main__form__new_message__input-box
+      = f.text_field :content, class: "wrapper__chat-main__form__new_message__input-box__text", placeholder: 'type a message'
+      = f.label :image, class: "wrapper__chat-main__form__new_message__input-box__image" do
+       = fa_icon 'picture-o'
+       = f.file_field :image, class: "wrapper__chat-main__form__new_message__input-box__image__file"
+     = f.submit 'Send', class: "wrapper__chat-main__form__new_message__submit-btn"
 
