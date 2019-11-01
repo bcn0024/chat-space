@@ -10,8 +10,10 @@ class MessagesController < ApplicationController
 
   def create
     @message = @group.messages.new(message_params)
+    #  送信されたメッセージをパラムスとしてグループ内に紐づいたメッセージとして変数へ代入
     if @message.save
       redirect_to group_messages_path(@group), notice: 'メッセージが送信されました'
+      #  内包するパラムスデータを保存できた場合、indexにリダイレクトし、フラッシュを出す。
     else
       @messages = @group.messages.includes(:user)
       flash.now[:alert] = 'メッセージを入力してください。'
