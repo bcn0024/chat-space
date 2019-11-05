@@ -27,7 +27,7 @@
         .chat-group-user.clearfix.js-chat-member
           %input{name: "group[user_ids][]", type: "hidden", value: current_user.id}
           %p.chat-group-user__name= current_user.name
-
+          -# ログイン中のユーザーを追加済みの状態にする
         - group.users.each do |user|
           - if current_user.name != user.name
             .chat-group-user.clearfix.js-chat-member
@@ -36,7 +36,7 @@
                 = user.name 
               %a.user-search-remove.chat-group-user__btn.chat-group-user__btn--remove.js-remove-btn
                 削除
-
+                -# 編集画面にアクセスした時に、既にグループに追加されているユーザーは、最初から追加済みの状態
   .chat-group-form__field.clearfix
     .chat-group-form__field--left
     .chat-group-form__field--right
