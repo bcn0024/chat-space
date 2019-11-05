@@ -8,6 +8,7 @@ $(function() {
     `;
     $("#user-search-result").append(html);
     // ${} を使用する事でテンプレートリテラル内で式展開が可能です。これを使用してユーザーの名前などを表示できるよう実装
+    // どのユーザーのhtmlかを特定するためにuser-idとuser-nameを取得
     // appendメソッド を使用してHTMLを描画
   }
 
@@ -32,6 +33,7 @@ $(function() {
     $(`#${userId}`).append(html);
     // ユーザーの追加や削除の情報は addMember というメソッドを作成してコントロールしています。
     // ここではメンバーを追加する際に情報を user_idsへ追加できるような仕組みを作り、削除ボタンを押すと同時にその情報も削除されるように実装
+    // <input name='group[user_ids][]' type='hidden' value='ユーザーのid'>  //この記述によりuserがDBに保存される
   }
   $("#user-search-field").on("keyup", function() {
     let input = $("#user-search-field").val();
@@ -63,7 +65,6 @@ $(function() {
       });
   });
   $(document).on("click", ".chat-group-user__btn--add", function() {
-    console.log
     const userName = $(this).attr("data-user-name");
     const userId = $(this).attr("data-user-id");
     $(this)
