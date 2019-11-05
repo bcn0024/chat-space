@@ -45,7 +45,9 @@ $(function () {
       var html = buildHTML(chat);
       $('.wrapper__chat-main__messages').append(html);
       $('.wrapper__chat-main__messages').animate({ scrollTop: $('.wrapper__chat-main__messages')[0].scrollHeight });
-      $('.wrapper__chat-main__form__new_message__input-box__text').val('')
+      $('#new_message')[0].reset();
+        // jQueryのセレクタは複数のオブジェクトを拾おうとします。
+        // [0]はその0番目の要素をDOMとしてつかんでいます
     })
     .fail(function() {
       alert("メッセージ送信に失敗しました");
