@@ -63,3 +63,9 @@ gem 'devise'
 gem 'carrierwave'
 gem 'mini_magick'
 gem 'jquery-rails'
+
+group :production do
+  gem 'unicorn', '5.4.1'
+end
+# このdo ~ endの間に記述されたgemは本番環境のみで読み込まれます。
+# Unicornは本番環境でのみ必要なので、開発環境下では不要
